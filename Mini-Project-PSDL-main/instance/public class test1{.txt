@@ -1,0 +1,48 @@
+public class test1{
+    class Pair{
+        TreeNode node;
+        int num;
+        Pair(TreeNode node,int num){
+            this.node = node;
+            this.num = num;
+        }
+    }
+    public void helper(TreeNode root){
+        Stack<Pair> s = new Stack<>();
+        List<Integer> pre = new ArrayList<>();
+        List<Integer> in = new ArrayList<>();
+        List<Integer> post = new ArrayList<>();
+        s.push(root,1);
+
+        while(!s.isEmpty()){
+            Pair p = s.pop();
+            TreeNode curr = p.node;
+            int num = p.num;
+
+            if(num == 1){
+                pre.add(curr.val);
+            num = 2;
+            s.push(p);
+            if(curr.left != null){
+                s.push(new Pair(curr.left.val,1));
+            }
+            }
+            else if(num == 2){
+                in.add(curr.val);
+                num = 3;
+                s.push(p);
+                if(curr.left != null){
+                s.push(new Pair(curr.left.val,1));
+            }
+        }
+        else{
+            post.add(curr.val);
+        }
+            
+        }
+    }
+    public static void main(String[] args){
+
+    }
+
+}
